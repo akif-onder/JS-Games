@@ -2,7 +2,7 @@ const squares = document.querySelectorAll('.square')
 const mole = document.querySelector('.mole')
 const timeLeft = document.querySelector('#time-left')
 const score = document.querySelector('#score')
-
+console.log(squares);
 // I will add a start game button.
 // add users
 // add scoreboard
@@ -12,9 +12,13 @@ let result = 0
 
 let hitPosition
 
-let currentTime = 5 
+let currentTime = 10
 
 let timerId = null
+
+let seenTime = 1500
+
+let accelaration = 500
 
 function randomSquare() {
     squares.forEach(square => {
@@ -38,21 +42,27 @@ squares.forEach(square => {
     })
 })
 
-function moveMole() {
-
-    timerId =setInterval(randomSquare,1000)
-}
-
-moveMole()
-
 function countDown() {
     currentTime--
     timeLeft.textContent = currentTime
     if (currentTime == 0) {
+        
+        currentTime = 10
+        seenTime = seenTime - accelaration
+    }
+    if (seenTime == 0) {
         clearInterval(countDownTimerId)
         clearInterval(timerId)
-        alert('Game Over. Your score is ' + result)
+        alert('Game over. Your point is ' + result)
     }
 }
 
+function moveMole() {
+    if (seenTime > 0) {
+        timerId = setInterval(randomSquare, seenTime)
+    }    
+}
+
 let countDownTimerId = setInterval(countDown, 1000)
+
+moveMole()
