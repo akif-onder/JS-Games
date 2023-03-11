@@ -14,7 +14,7 @@ let hitPosition
 
 let currentTime = 10
 
-let timerId = null
+let timerId
 
 let seenTime = 1500
 
@@ -46,9 +46,8 @@ function countDown() {
     currentTime--
     timeLeft.textContent = currentTime
     if (currentTime == 0) {
-        
-        currentTime = 10
         seenTime = seenTime - accelaration
+        currentTime = 10
     }
     if (seenTime == 0) {
         clearInterval(countDownTimerId)
@@ -57,10 +56,8 @@ function countDown() {
     }
 }
 
-function moveMole() {
-    if (seenTime > 0) {
-        timerId = setInterval(randomSquare, seenTime)
-    }    
+function moveMole() { 
+    timerId = setInterval(randomSquare, seenTime)      
 }
 
 let countDownTimerId = setInterval(countDown, 1000)
