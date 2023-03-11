@@ -3,6 +3,10 @@ const mole = document.querySelector('.mole')
 const timeLeft = document.querySelector('#time-left')
 const score = document.querySelector('#score')
 
+// I will add a start game button.
+// add users
+// add scoreboard
+// add time input (how long do you want the game to be??)
 
 let result = 0
 
