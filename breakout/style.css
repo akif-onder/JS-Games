@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid {
+    position: absolute;
+    width: 600px;
+    height: 300px;
+    border: 1px solid black;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.block{
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background: blue;
+}
