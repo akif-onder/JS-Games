@@ -9,8 +9,9 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    margin-top: 2rem;
 }
 
 .grid {
@@ -42,4 +43,8 @@ body{
     height: 20px;
     border-radius: 10px;
     background-color: red;
+}
+
+#score {
+    background-color: bisque;
 }
