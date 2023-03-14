@@ -19,20 +19,6 @@
     background-color: blue;
 }
 
-.log-left,
-.log-right{
-    background-color: lightblue;
-}
-
-.car-left,
-.car-right{
-    background-color: lightgrey;
-}
-
-.frog {
-    background-color: green;
-}
-
 .l1, .l2, .l3 {
     background-color: brown;
 }
@@ -44,4 +30,7 @@
 }
 .c2, .c3{
     background-color: lightcyan;
+}
+.frog {
+    background-color: green;
 }
