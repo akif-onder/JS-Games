@@ -39,9 +39,9 @@
 .l4, .l5{
     background-color: lightblue;
 }
-.c1, .c2, .c3 {
-    background-color: blue;
+.c1{
+    background-color: black;
 }
-.c4, .c5{
+.c2, .c3{
     background-color: lightcyan;
 }
