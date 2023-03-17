@@ -35,7 +35,7 @@ let alienY = tileSize
 let alienImg;
 
 let alienRows = 2;
-let alienColumns = 3 
+let alienColumns = 3; 
 let alienCount = 0; // number of aliens to defeat
 
 window.onload = function () {
@@ -54,6 +54,14 @@ window.onload = function () {
     shipImg.onload = function () {
         context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height)
     }
+    
+    alienImg = new Image()
+    alienImg.src = "./images/alien.png"
+    
+    createAliens()
+
+
+
     requestAnimationFrame(update)
     document.addEventListener('keydown', moveShip)
 } 
@@ -62,9 +70,17 @@ function update() {
     requestAnimationFrame(update)
 
     context.clearRect(0, 0, board.width, board.height)
-
+    //ship
     context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height)
-    
+
+    //alien
+    for (let i = 0; i < alienArrray.length; i++) {
+        let alien = alienArrray[i];
+        if (alien.alive) {
+            context.drawImage(alienImg, alien.x, alien.y, alien.width, alien.height)
+        }
+        
+    }
 }
 
 function moveShip(e) {
@@ -75,4 +91,19 @@ function moveShip(e) {
     }
 }
 
- 
+ function createAliens() {
+    for (let c = 0; c < alienColumns; c++) {
+        for (let r = 0; r < alienRows; r++) {
+           let alien = {
+            img: alienImg,
+            x: alienX + c*alienWidth,
+            y: alienY + r*alienHeight,
+            width: alienWidth,
+            height: alienHeight,
+            alive: true 
+           } 
+           alienArrray.push(alien)
+        }
+    }
+    alienCount = alienArrray.length
+ }
