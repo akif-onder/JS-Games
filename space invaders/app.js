@@ -35,8 +35,9 @@ let alienY = tileSize
 let alienImg;
 
 let alienRows = 2;
-let alienColumns = 3; 
+let alienColumns = 3;  
 let alienCount = 0; // number of aliens to defeat
+let alienVelocityX = 1; //moving speed
 
 window.onload = function () {
     board = document.getElementById('board')
@@ -77,6 +78,11 @@ function update() {
     for (let i = 0; i < alienArrray.length; i++) {
         let alien = alienArrray[i];
         if (alien.alive) {
+            alien.x += alienVelocityX
+            // keeps aliens in the board
+            if (alien.x + alien.width >= board.width || alien.x <= 0) {
+                alienVelocityX *= -1
+            }
             context.drawImage(alienImg, alien.x, alien.y, alien.width, alien.height)
         }
         
