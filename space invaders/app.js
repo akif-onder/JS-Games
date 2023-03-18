@@ -8,6 +8,10 @@ let boardWidth = tileSize * columns
 let boardHeight = tileSize * rows
 let context;
 
+let score = 0;
+
+let gameOver = false
+
 
 let shipWidth = tileSize * 2
 let shipHeight = tileSize
@@ -37,7 +41,7 @@ let alienImg;
 let alienRows = 2;
 let alienColumns = 3;
 let alienCount = 0; // number of aliens to defeat
-let alienVelocityX = 1; //moving speed
+let alienVelocityX = 10;  //moving speed
 
 // bullets
 
@@ -76,6 +80,9 @@ window.onload = function () {
 
 function update() {
     requestAnimationFrame(update)
+    if (gameOver) {
+        return
+    }
 
     context.clearRect(0, 0, board.width, board.height)
     //ship
@@ -98,6 +105,14 @@ function update() {
                 }
             }
             context.drawImage(alienImg, alien.x, alien.y, alien.width, alien.height)
+
+            //game over
+            if (alien.y >= ship.y) {
+                gameOver = true
+                context.fillStyle = "yellow";
+                context.font = "48px courier"
+                context.fillText('GAME OVER', columns/4*tileSize, rows/2*tileSize)
+            }
         }
     }
 
@@ -115,8 +130,9 @@ function update() {
                 bullet.used = true;
                 alien.alive = false;
                 alienCount--;
+                score += 100;
             }
-            
+
         }
 
     }
@@ -126,10 +142,29 @@ function update() {
     while (bulletArray.length > 0 && (bulletArray[0].used || bulletArray[0].y < 0)) {
         bulletArray.shift(); // removing the first bullet
     }
-       
+    // level up
+
+    if (alienCount == 0) {
+        alienColumns = Math.min(alienColumns + 1, columns / 2 - 2)
+        alienRows = Math.min(alienRows + 1, rows - 4)
+        alienVelocityX += 0.5;
+        alienArrray = []
+        bulletArray = []
+        createAliens()
+    }
+
+    //score
+    context.fillStyle = "white";
+    context.font = "16px courier"
+    context.fillText(score, 10, 25)
+
 }
 
 function moveShip(e) {
+    if (gameOver) {
+        return
+    }
+
     if (e.key == "ArrowLeft" && ship.x - shipVelocityX >= 0) {
         ship.x -= shipVelocityX
     } else if (e.key == "ArrowRight" && ship.x + shipWidth + shipVelocityX <= board.width) {
@@ -156,6 +191,10 @@ function createAliens() {
 
 
 function shoot(e) {
+    if (gameOver) {
+        return
+    }
+
     if (e.code == 'Space') {
         let bullet = {
             x: ship.x + shipWidth * 15 / 32,
@@ -166,7 +205,7 @@ function shoot(e) {
         }
         bulletArray.push(bullet)
         //console.log(bulletArray);
-        
+
     }
 }
 
@@ -176,4 +215,4 @@ function detectCollision(a, b) {
         a.y < b.y + b.height &&
         a.y + a.height > b.y)
 }
- 
+
