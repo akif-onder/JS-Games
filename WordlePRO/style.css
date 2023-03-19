@@ -22,6 +22,7 @@ body {
 
 .tile-container {
     width: 330px;
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 
@@ -29,4 +30,49 @@ body {
     width: 510px;
     display: flex;
     flex-wrap: wrap;
+}
+
+.key-container button {
+    width: 43px;
+    height: 58px;
+    border-radius: 4px;
+    border: none;
+    background-color: #818384;
+    margin: 4px;
+}
+
+.key-container button:nth-child(11){
+    margin-left: 25px;
+}
+
+.key-container button:nth-child(20),
+.key-container button:nth-child(28) {
+    width: 68px;
+}
+
+.tile-container div{
+    display: flex;
+}
+
+.tile-container .tile {
+    width: 62px;
+    height: 62px;
+    border: 2px solid #3a3a3c;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+}
+
+.message-container {
+    height: 30px;
+    margin: 20px;
+}
+
+.message-container p{
+    background-color: #818384;
+    border-radius: 10px;
+    padding: 10px;
+    
 }
