@@ -1,18 +1,16 @@
 import {getInputDirection} from './input.js'
 
-export const SNAKE_SPEED = 3
+export const SNAKE_SPEED = 5
 
 const snakeBody = [
-    {x:11, y:11},
-    {x:11, y:12},
-    {x:11, y:13},
-    {x:11, y:14},
-    {x:11, y:15},
-    {x:11, y:16},
+    {x:11, y:11}
 ]
+let newSegments = 0
 
 
 export function updateSnake() {
+    addSquares()
+
     const inputDirection = getInputDirection()
     for (let i = snakeBody.length - 2; i >= 0; i--) {
         snakeBody[i+1] = {...snakeBody[i]}  
@@ -29,4 +27,25 @@ export function drawSnake(gameBoard) {
         snakePiece.classList.add('snake')
         gameBoard.appendChild(snakePiece)
     });
+}
+
+export function expandSnake(amount) {
+    newSegments += amount
+}
+
+export function onSnake(position) {
+    return snakeBody.some(square => {
+        return equalPositions(square, position)
+    })
+}
+
+export function equalPositions(pos1, pos2) {
+    return pos1.x === pos2.x && pos1.y === pos2.y
+}
+
+function addSquares() {
+    for (let i = 0; i < newSegments; i++) {
+        snakeBody.push({...snakeBody[snakeBody.length - 1]})
+    }
+    newSegments = 0
 }
