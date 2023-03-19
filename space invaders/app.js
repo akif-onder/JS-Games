@@ -41,7 +41,7 @@ let alienImg;
 let alienRows = 2;
 let alienColumns = 3;
 let alienCount = 0; // number of aliens to defeat
-let alienVelocityX = 10;  //moving speed
+let alienVelocityX = 1;  //moving speed
 
 // bullets
 
